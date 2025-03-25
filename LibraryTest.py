@@ -1,5 +1,6 @@
 from dnd_character import *
 import json
+
 def playerCharCreate(name,age,level,gender,description,background,playerclass):
     newChar = Character(
         name=name,
