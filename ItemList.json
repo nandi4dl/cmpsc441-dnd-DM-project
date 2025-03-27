@@ -1,6 +1,6 @@
 {
 	"items": 
-    [
+	[
 		{
 			"ID": "001",
 			"Name": "Padded Armor",
@@ -144,7 +144,7 @@
 			"DamageType": "Bludgeoning",
 			"Properties": ["Light"]
 		},
-        {
+		{
 			"ID": "015",
 			"Name": "Dagger",
 			"Category": "Weapon",
@@ -153,9 +153,9 @@
 			"Damage": "1d4",
 			"DamageType": "Piercing",
 			"Properties": ["Finesse", "Light", "Thrown"],
-            "Range": "20/60"
+			"Range": "20/60"
 		},
-        {
+		{
 			"ID": "016",
 			"Name": "Greatclub",
 			"Category": "Weapon",
@@ -241,7 +241,7 @@
 			"Range": "20/60",
 			"Versatile": "1d8"
 		},
-        {
+		{
 			"ID": "024",
 			"Name": "Light Crossbow",
 			"Category": "Weapon",
@@ -285,7 +285,7 @@
 			"Properties": ["Ammunition"],
 			"Range": "30/120"
 		},
-        {
+		{
 			"ID": "028",
 			"Name": "Battle Axe",
 			"Category": "Weapon",
@@ -294,237 +294,237 @@
 			"Damage": "1d8",
 			"DamageType": "Slashing",
 			"Properties": ["Versatile"],
-            "Versatile" : "1d10"
+			"Versatile" : "1d10"
 		},
-        {
-            "ID": "029",
-            "Name": "Flail",
-            "Category": "Weapon",
-            "Cost_gp": 10,
-            "Weight": 2,
-            "Damage": "1d8",
-            "DamageType": "Bludgeoning",
-            "Properties": []
-        },
-        {
-            "ID": "030",
-            "Name": "Glaive",
-            "Category": "Weapon",
-            "Cost_gp": 20,
-            "Weight": 6,
-            "Damage": "1d10",
-            "DamageType": "Slashing",
-            "Properties": ["Heavy", "Reach", "Two-handed"]
-        },
-        {
-            "ID": "031",
-            "Name": "Greataxe",
-            "Category": "Weapon",
-            "Cost_gp": 30,
-            "Weight": 7,
-            "Damage": "1d12",
-            "DamageType": "Slashing",
-            "Properties": ["Heavy", "Two-handed"]
-        },
-        {
-            "ID": "032",
-            "Name": "Greatsword",
-            "Category": "Weapon",
-            "Cost_gp": 50,
-            "Weight": 6,
-            "Damage": "2d6",
-            "DamageType": "Slashing",
-            "Properties": ["Heavy", "Two-handed"]
-        },
-        {
-            "ID": "033",
-            "Name": "Halberd",
-            "Category": "Weapon",
-            "Cost_gp": 20,
-            "Weight": 6,
-            "Damage": "1d10",
-            "DamageType": "Slashing",
-            "Properties": ["Heavy", "Reach", "Two-handed"]
-        },
-        {
-            "ID": "034",
-            "Name": "Lance",
-            "Category": "Weapon",
-            "Cost_gp": 10,
-            "Weight": 6,
-            "Damage": "1d12",
-            "DamageType": "Piercing",
-            "Properties": ["Reach", "Special"]
-        },
-        {
-            "ID": "035",
-            "Name": "Longsword",
-            "Category": "Weapon",
-            "Cost_gp": 15,
-            "Weight": 3,
-            "Damage": "1d8",
-            "DamageType": "Slashing",
-            "Properties": ["Versatile"],
-            "Versatile": "1d10"
-        },
-        {
-            "ID": "036",
-            "Name": "Maul",
-            "Category": "Weapon",
-            "Cost_gp": 10,
-            "Weight": 10,
-            "Damage": "2d6",
-            "DamageType": "Bludgeoning",
-            "Properties": ["Heavy", "Two-handed"]
-        },
-        {
-            "ID": "037",
-            "Name": "Morningstar",
-            "Category": "Weapon",
-            "Cost_gp": 15,
-            "Weight": 4,
-            "Damage": "1d8",
-            "DamageType": "Piercing",
-            "Properties": []
-        },
-        {
-            "ID": "038",
-            "Name": "Pike",
-            "Category": "Weapon",
-            "Cost_gp": 5,
-            "Weight": 18,
-            "Damage": "1d10",
-            "DamageType": "Piercing",
-            "Properties": ["Heavy", "Reach", "Two-handed"]
-        },
-        {
-            "ID": "039",
-            "Name": "Rapier",
-            "Category": "Weapon",
-            "Cost_gp": 25,
-            "Weight": 2,
-            "Damage": "1d8",
-            "DamageType": "Piercing",
-            "Properties": ["Finesse"]
-        },
-        {
-            "ID": "040",
-            "Name": "Scimitar",
-            "Category": "Weapon",
-            "Cost_gp": 25,
-            "Weight": 3,
-            "Damage": "1d6",
-            "DamageType": "Slashing",
-            "Properties": ["Finesse", "Light"]
-        },
-        {
-            "ID": "041",
-            "Name": "Shortsword",
-            "Category": "Weapon",
-            "Cost_gp": 10,
-            "Weight": 2,
-            "Damage": "1d6",
-            "DamageType": "Piercing",
-            "Properties": ["Finesse", "Light"]
-        },
-        {
-            "ID": "042",
-            "Name": "Trident",
-            "Category": "Weapon",
-            "Cost_gp": 5,
-            "Weight": 4,
-            "Damage": "1d6",
-            "DamageType": "Piercing",
-            "Properties": ["Thrown", "Versatile"],
-            "Range": "20/60",
-            "Versatile": "1d8"
-        },
-        {
-            "ID": "043",
-            "Name": "War pick",
-            "Category": "Weapon",
-            "Cost_gp": 5,
-            "Weight": 2,
-            "Damage": "1d8",
-            "DamageType": "Piercing",
-            "Properties": []
-        },
-        {
-            "ID": "044",
-            "Name": "Warhammer",
-            "Category": "Weapon",
-            "Cost_gp": 15,
-            "Weight": 2,
-            "Damage": "1d8",
-            "DamageType": "Bludgeoning",
-            "Properties": ["Versatile"],
-            "Versatile": "1d10"
-        },
-        {
-            "ID": "045",
-            "Name": "Whip",
-            "Category": "Weapon",
-            "Cost_gp": 2,
-            "Weight": 3,
-            "Damage": "1d4",
-            "DamageType": "Slashing",
-            "Properties": ["Finesse", "Reach"]
-        },
-        {
-            "ID": "046",
-            "Name": "Blowgun",
-            "Category": "Weapon",
-            "Cost_gp": 10,
-            "Weight": 1,
-            "Damage": "1",
-            "DamageType": "Piercing",
-            "Properties": ["Ammunition", "Loading"],
-            "Range": "25/100"
-        },
-        {
-            "ID": "047",
-            "Name": "Crossbow, hand",
-            "Category": "Weapon",
-            "Cost_gp": 75,
-            "Weight": 3,
-            "Damage": "1d6",
-            "DamageType": "Piercing",
-            "Properties": ["Ammunition", "Light", "Loading"],
-            "Range": "30/120"
-        },
-        {
-            "ID": "048",
-            "Name": "Crossbow, heavy",
-            "Category": "Weapon",
-            "Cost_gp": 50,
-            "Weight": 18,
-            "Damage": "1d10",
-            "DamageType": "Piercing",
-            "Properties": ["Ammunition", "Heavy", "Loading", "Two-handed"],
-            "Range": "100/400"
-        },
-        {
-            "ID": "049",
-            "Name": "Longbow",
-            "Category": "Weapon",
-            "Cost_gp": 50,
-            "Weight": 2,
-            "Damage": "1d8",
-            "DamageType": "Piercing",
-            "Properties": ["Ammunition", "Heavy", "Two-handed"],
-            "Range": "150/600"
-        },
-        {
-            "ID": "050",
-            "Name": "Net",
-            "Category": "Weapon",
-            "Cost_gp": 1,
-            "Weight": 3,
-            "Damage": "",
-            "DamageType": "",
-            "Properties": ["Special", "Thrown"],
-            "Range": "5/15"
-        },  
+		{
+			"ID": "029",
+			"Name": "Flail",
+			"Category": "Weapon",
+			"Cost_gp": 10,
+			"Weight": 2,
+			"Damage": "1d8",
+			"DamageType": "Bludgeoning",
+			"Properties": []
+		},
+		{
+			"ID": "030",
+			"Name": "Glaive",
+			"Category": "Weapon",
+			"Cost_gp": 20,
+			"Weight": 6,
+			"Damage": "1d10",
+			"DamageType": "Slashing",
+			"Properties": ["Heavy", "Reach", "Two-handed"]
+		},
+		{
+			"ID": "031",
+			"Name": "Greataxe",
+			"Category": "Weapon",
+			"Cost_gp": 30,
+			"Weight": 7,
+			"Damage": "1d12",
+			"DamageType": "Slashing",
+			"Properties": ["Heavy", "Two-handed"]
+		},
+		{
+			"ID": "032",
+			"Name": "Greatsword",
+			"Category": "Weapon",
+			"Cost_gp": 50,
+			"Weight": 6,
+			"Damage": "2d6",
+			"DamageType": "Slashing",
+			"Properties": ["Heavy", "Two-handed"]
+		},
+		{
+			"ID": "033",
+			"Name": "Halberd",
+			"Category": "Weapon",
+			"Cost_gp": 20,
+			"Weight": 6,
+			"Damage": "1d10",
+			"DamageType": "Slashing",
+			"Properties": ["Heavy", "Reach", "Two-handed"]
+		},
+		{
+			"ID": "034",
+			"Name": "Lance",
+			"Category": "Weapon",
+			"Cost_gp": 10,
+			"Weight": 6,
+			"Damage": "1d12",
+			"DamageType": "Piercing",
+			"Properties": ["Reach", "Special"]
+		},
+		{
+			"ID": "035",
+			"Name": "Longsword",
+			"Category": "Weapon",
+			"Cost_gp": 15,
+			"Weight": 3,
+			"Damage": "1d8",
+			"DamageType": "Slashing",
+			"Properties": ["Versatile"],
+			"Versatile": "1d10"
+		},
+		{
+			"ID": "036",
+			"Name": "Maul",
+			"Category": "Weapon",
+			"Cost_gp": 10,
+			"Weight": 10,
+			"Damage": "2d6",
+			"DamageType": "Bludgeoning",
+			"Properties": ["Heavy", "Two-handed"]
+		},
+		{
+			"ID": "037",
+			"Name": "Morningstar",
+			"Category": "Weapon",
+			"Cost_gp": 15,
+			"Weight": 4,
+			"Damage": "1d8",
+			"DamageType": "Piercing",
+			"Properties": []
+		},
+		{
+			"ID": "038",
+			"Name": "Pike",
+			"Category": "Weapon",
+			"Cost_gp": 5,
+			"Weight": 18,
+			"Damage": "1d10",
+			"DamageType": "Piercing",
+			"Properties": ["Heavy", "Reach", "Two-handed"]
+		},
+		{
+			"ID": "039",
+			"Name": "Rapier",
+			"Category": "Weapon",
+			"Cost_gp": 25,
+			"Weight": 2,
+			"Damage": "1d8",
+			"DamageType": "Piercing",
+			"Properties": ["Finesse"]
+		},
+		{
+			"ID": "040",
+			"Name": "Scimitar",
+			"Category": "Weapon",
+			"Cost_gp": 25,
+			"Weight": 3,
+			"Damage": "1d6",
+			"DamageType": "Slashing",
+			"Properties": ["Finesse", "Light"]
+		},
+		{
+			"ID": "041",
+			"Name": "Shortsword",
+			"Category": "Weapon",
+			"Cost_gp": 10,
+			"Weight": 2,
+			"Damage": "1d6",
+			"DamageType": "Piercing",
+			"Properties": ["Finesse", "Light"]
+		},
+		{
+			"ID": "042",
+			"Name": "Trident",
+			"Category": "Weapon",
+			"Cost_gp": 5,
+			"Weight": 4,
+			"Damage": "1d6",
+			"DamageType": "Piercing",
+			"Properties": ["Thrown", "Versatile"],
+			"Range": "20/60",
+			"Versatile": "1d8"
+		},
+		{
+			"ID": "043",
+			"Name": "War pick",
+			"Category": "Weapon",
+			"Cost_gp": 5,
+			"Weight": 2,
+			"Damage": "1d8",
+			"DamageType": "Piercing",
+			"Properties": []
+		},
+		{
+			"ID": "044",
+			"Name": "Warhammer",
+			"Category": "Weapon",
+			"Cost_gp": 15,
+			"Weight": 2,
+			"Damage": "1d8",
+			"DamageType": "Bludgeoning",
+			"Properties": ["Versatile"],
+			"Versatile": "1d10"
+		},
+		{
+			"ID": "045",
+			"Name": "Whip",
+			"Category": "Weapon",
+			"Cost_gp": 2,
+			"Weight": 3,
+			"Damage": "1d4",
+			"DamageType": "Slashing",
+			"Properties": ["Finesse", "Reach"]
+		},
+		{
+			"ID": "046",
+			"Name": "Blowgun",
+			"Category": "Weapon",
+			"Cost_gp": 10,
+			"Weight": 1,
+			"Damage": "1",
+			"DamageType": "Piercing",
+			"Properties": ["Ammunition", "Loading"],
+			"Range": "25/100"
+		},
+		{
+			"ID": "047",
+			"Name": "Crossbow, hand",
+			"Category": "Weapon",
+			"Cost_gp": 75,
+			"Weight": 3,
+			"Damage": "1d6",
+			"DamageType": "Piercing",
+			"Properties": ["Ammunition", "Light", "Loading"],
+			"Range": "30/120"
+		},
+		{
+			"ID": "048",
+			"Name": "Crossbow, heavy",
+			"Category": "Weapon",
+			"Cost_gp": 50,
+			"Weight": 18,
+			"Damage": "1d10",
+			"DamageType": "Piercing",
+			"Properties": ["Ammunition", "Heavy", "Loading", "Two-handed"],
+			"Range": "100/400"
+		},
+		{
+			"ID": "049",
+			"Name": "Longbow",
+			"Category": "Weapon",
+			"Cost_gp": 50,
+			"Weight": 2,
+			"Damage": "1d8",
+			"DamageType": "Piercing",
+			"Properties": ["Ammunition", "Heavy", "Two-handed"],
+			"Range": "150/600"
+		},
+		{
+			"ID": "050",
+			"Name": "Net",
+			"Category": "Weapon",
+			"Cost_gp": 1,
+			"Weight": 3,
+			"Damage": "",
+			"DamageType": "",
+			"Properties": ["Special", "Thrown"],
+			"Range": "5/15"
+		},  
 		{
 			"ID": "051",
 			"Name": "Abacis",
@@ -532,14 +532,14 @@
 			"Cost_gp": 2,
 			"Weight": 2
 		},
-        {
+		{
 			"ID": "052",
 			"Name": "Acid (Vial)",
 			"Category": "Adventuring Gear",
 			"Cost_gp": 25,
 			"Weight": 1
 		},		
-        {
+		{
 			"ID": "053",
 			"Name": "Alchemist's Fire (Flask)",
 			"Category": "Adventuring Gear",
@@ -552,23 +552,23 @@
 			"Category": "Adventuring Gear",
 			"Cost_gp": 1,
 			"Weight": 1,
-            "Amount": 20
+			"Amount": 20
 		},
-        {
+		{
 			"ID": "055",
 			"Name": "Blowgun Needles",
 			"Category": "Adventuring Gear",
 			"Cost_gp": 1,
 			"Weight": 1, 
-            "Amount": 50
+			"Amount": 50
 		},
-        {
+		{
 			"ID": "056",
 			"Name": "Crossbow Bolts",
 			"Category": "Adventuring Gear",
 			"Cost_gp": 1,
 			"Weight": 1.5,
-            "Amount": 20
+			"Amount": 20
 		},
 		{
 			"ID": "057",
@@ -576,409 +576,409 @@
 			"Category": "Adventuring Gear",
 			"Cost_gp": 0.04,
 			"Weight": 1.5,
-            "Amount": 20 
+			"Amount": 20 
 		},
-        {
-            "ID": "058",
-            "Name": "Antitoxin (Vial)",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 50,
-            "Weight": 0
-        },
-        {
-            "ID": "059",
-            "Name": "Crystal",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 10,
-            "Weight": 1
-        },
-        {
-            "ID": "060",
-            "Name": "Orb",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 20,
-            "Weight": 3
-        },
-        {
-            "ID": "061",
-            "Name": "Rod",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 10,
-            "Weight": 2
-        },
-        {
-            "ID": "062",
-            "Name": "Staff (Arcane Focus)",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 5,
-            "Weight": 4
-        },
-        {
-            "ID": "063",
-            "Name": "Wand",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 10,
-            "Weight": 1
-        },
-        {
-            "ID": "064",
-            "Name": "Backpack",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 2,
-            "Weight": 5
-        },
-        {
-            "ID": "065",
-            "Name": "Ball Bearings Bag",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 1,
-            "Weight": 2
-        },
-        {
-            "ID": "066",
-            "Name": "Barrel",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 2,
-            "Weight": 70
-        },
-        {
-            "ID": "067",
-            "Name": "Basket",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 0.4,
-            "Weight": 2
-        },
-        {
-            "ID": "068",
-            "Name": "Bedroll",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 1,
-            "Weight": 7
-        },
-        {
-            "ID": "069",
-            "Name": "Bell",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 1,
-            "Weight": 0
-        },
-        {
-            "ID": "070",
-            "Name": "Blanket",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 0.5,
-            "Weight": 3
-        },
-        {
-            "ID": "071",
-            "Name": "Block and Tackle",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 1,
-            "Weight": 5
-        },
-        {
-            "ID": "072",
-            "Name": "Book",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 25,
-            "Weight": 5
-        },
-        {
-            "ID": "073",
-            "Name": "Bottle, Glass",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 2,
-            "Weight": 2
-        },
-        {
-            "ID": "074",
-            "Name": "Bucket",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 0.05,
-            "Weight": 2
-        },
-        {
-            "ID": "075",
-            "Name": "Caltrops",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 1,
-            "Weight": 2,
-            "Amount": 20
-        },
-        {
-            "ID": "076",
-            "Name": "Candle",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 0.01,
-            "Weight": 0
-        },
-        {
-            "ID": "077",
-            "Name": "Case for Crossbow Bolt",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 1,
-            "Weight": 1
-        },
-        {
-            "ID": "078",
-            "Name": "Case for Map or Scroll",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 1,
-            "Weight": 1
-        },
-        {
-            "ID": "079",
-            "Name": "Chain (10 Feet)",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 5,
-            "Weight": 10
-        },
-        {
-            "ID": "080",
-            "Name": "Chalk",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 0.01,
-            "Weight": 0
-        },
-        {
-            "ID": "081",
-            "Name": "Chest",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 5,
-            "Weight": 25
-        },
-        {
-            "ID": "082",
-            "Name": "Climber's Kit",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 25,
-            "Weight": 12
-        },
-        {
-            "ID": "083",
-            "Name": "Clothes, Common",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 0.5,
-            "Weight": 3
-        },
-        {
-            "ID": "084",
-            "Name": "Clothes, Costume",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 5,
-            "Weight": 4
-        },
-        {
-            "ID": "085",
-            "Name": "Clothes, Fine",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 15,
-            "Weight": 6
-        },
-        {
-            "ID": "086",
-            "Name": "Clothes, Traveler's",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 2,
-            "Weight": 4
-        },
-        {
-            "ID": "087",
-            "Name": "Component Pouch",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 25,
-            "Weight": 2
-        },
-        {
-            "ID": "088",
-            "Name": "Crowbar",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 2,
-            "Weight": 5
-        },
-        {
-            "ID": "089",
-            "Name": "Sprig of Mistletoe",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 1,
-            "Weight": 0
-        },
-        {
-            "ID": "090",
-            "Name": "Totem",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 1,
-            "Weight": 0
-        },
-        {
-            "ID": "091",
-            "Name": "Wooden Staff",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 5,
-            "Weight": 4
-        },
-        {
-            "ID": "092",
-            "Name": "Yew Wand",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 10,
-            "Weight": 1
-        },
-        {
-            "ID": "093",
-            "Name": "Fishing Tackle",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 1,
-            "Weight": 4
-        },
-        {
-            "ID": "094",
-            "Name": "Flask or Tankard",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 0.02,
-            "Weight": 1
-        },
-        {
-            "ID": "095",
-            "Name": "Grappling Hook",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 2,
-            "Weight": 4
-        },
-        {
-            "ID": "096",
-            "Name": "Hammer",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 1,
-            "Weight": 3
-        },
-        {
-            "ID": "097",
-            "Name": "Hammer, Sledge",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 2,
-            "Weight": 10
-        },
-        {
-            "ID": "098",
-            "Name": "Healer's Kit",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 5,
-            "Weight": 3
-        },
-        {
-            "ID": "099",
-            "Name": "Amulet",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 5,
-            "Weight": 1
-        },
-        {
-            "ID": "100",
-            "Name": "Emblem",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 5,
-            "Weight": 0
-        },
-        {
-            "ID": "101",
-            "Name": "Reliquary",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 5,
-            "Weight": 2
-        },
-        {
-            "ID": "102",
-            "Name": "Holy Water (Flask)",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 25,
-            "Weight": 1
-        },
-        {
-            "ID": "103",
-            "Name": "Hourglass",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 25,
-            "Weight": 1
-        },
-        {
-            "ID": "104",
-            "Name": "Hunting Trap",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 5,
-            "Weight": 25
-        },
-        {
-            "ID": "105",
-            "Name": "Ink (1 Ounce)",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 10,
-            "Weight": 0
-        },
-        {
-            "ID": "106",
-            "Name": "Ink Pen",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 0.02,
-            "Weight": 0
-        },
-        {
-            "ID": "107",
-            "Name": "Jug or Pitcher",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 0.02,
-            "Weight": 4
-        },
-        {
-            "ID": "108",
-            "Name": "Ladder (10-foot)",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 0.1,
-            "Weight": 25
-        },
-        {
-            "ID": "109",
-            "Name": "Lamp",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 0.5,
-            "Weight": 1
-        },
-        {
-            "ID": "110",
-            "Name": "Lantern, Bullseye",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 10,
-            "Weight": 2
-        },
-        {
-            "ID": "111",
-            "Name": "Lantern, Hooded",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 5,
-            "Weight": 2
-        },
-        {
-            "ID": "112",
-            "Name": "Lock",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 10,
-            "Weight": 1
-        },
-        {
-            "ID": "113",
-            "Name": "Magnifying Glass",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 100,
-            "Weight": 0
-        },
-        {
-            "ID": "114",
-            "Name": "Manacles",
-            "Category": "Adventuring Gear",
-            "Cost_gp": 2,
-            "Weight": 6
-        },
-        {
+		{
+			"ID": "058",
+			"Name": "Antitoxin (Vial)",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 50,
+			"Weight": 0
+		},
+		{
+			"ID": "059",
+			"Name": "Crystal",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 10,
+			"Weight": 1
+		},
+		{
+			"ID": "060",
+			"Name": "Orb",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 20,
+			"Weight": 3
+		},
+		{
+			"ID": "061",
+			"Name": "Rod",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 10,
+			"Weight": 2
+		},
+		{
+			"ID": "062",
+			"Name": "Staff (Arcane Focus)",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 5,
+			"Weight": 4
+		},
+		{
+			"ID": "063",
+			"Name": "Wand",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 10,
+			"Weight": 1
+		},
+		{
+			"ID": "064",
+			"Name": "Backpack",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 2,
+			"Weight": 5
+		},
+		{
+			"ID": "065",
+			"Name": "Ball Bearings Bag",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 1,
+			"Weight": 2
+		},
+		{
+			"ID": "066",
+			"Name": "Barrel",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 2,
+			"Weight": 70
+		},
+		{
+			"ID": "067",
+			"Name": "Basket",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 0.4,
+			"Weight": 2
+		},
+		{
+			"ID": "068",
+			"Name": "Bedroll",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 1,
+			"Weight": 7
+		},
+		{
+			"ID": "069",
+			"Name": "Bell",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 1,
+			"Weight": 0
+		},
+		{
+			"ID": "070",
+			"Name": "Blanket",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 0.5,
+			"Weight": 3
+		},
+		{
+			"ID": "071",
+			"Name": "Block and Tackle",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 1,
+			"Weight": 5
+		},
+		{
+			"ID": "072",
+			"Name": "Book",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 25,
+			"Weight": 5
+		},
+		{
+			"ID": "073",
+			"Name": "Bottle, Glass",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 2,
+			"Weight": 2
+		},
+		{
+			"ID": "074",
+			"Name": "Bucket",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 0.05,
+			"Weight": 2
+		},
+		{
+			"ID": "075",
+			"Name": "Caltrops",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 1,
+			"Weight": 2,
+			"Amount": 20
+		},
+		{
+			"ID": "076",
+			"Name": "Candle",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 0.01,
+			"Weight": 0
+		},
+		{
+			"ID": "077",
+			"Name": "Case for Crossbow Bolt",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 1,
+			"Weight": 1
+		},
+		{
+			"ID": "078",
+			"Name": "Case for Map or Scroll",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 1,
+			"Weight": 1
+		},
+		{
+			"ID": "079",
+			"Name": "Chain (10 Feet)",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 5,
+			"Weight": 10
+		},
+		{
+			"ID": "080",
+			"Name": "Chalk",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 0.01,
+			"Weight": 0
+		},
+		{
+			"ID": "081",
+			"Name": "Chest",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 5,
+			"Weight": 25
+		},
+		{
+			"ID": "082",
+			"Name": "Climber's Kit",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 25,
+			"Weight": 12
+		},
+		{
+			"ID": "083",
+			"Name": "Clothes, Common",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 0.5,
+			"Weight": 3
+		},
+		{
+			"ID": "084",
+			"Name": "Clothes, Costume",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 5,
+			"Weight": 4
+		},
+		{
+			"ID": "085",
+			"Name": "Clothes, Fine",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 15,
+			"Weight": 6
+		},
+		{
+			"ID": "086",
+			"Name": "Clothes, Traveler's",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 2,
+			"Weight": 4
+		},
+		{
+			"ID": "087",
+			"Name": "Component Pouch",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 25,
+			"Weight": 2
+		},
+		{
+			"ID": "088",
+			"Name": "Crowbar",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 2,
+			"Weight": 5
+		},
+		{
+			"ID": "089",
+			"Name": "Sprig of Mistletoe",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 1,
+			"Weight": 0
+		},
+		{
+			"ID": "090",
+			"Name": "Totem",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 1,
+			"Weight": 0
+		},
+		{
+			"ID": "091",
+			"Name": "Wooden Staff",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 5,
+			"Weight": 4
+		},
+		{
+			"ID": "092",
+			"Name": "Yew Wand",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 10,
+			"Weight": 1
+		},
+		{
+			"ID": "093",
+			"Name": "Fishing Tackle",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 1,
+			"Weight": 4
+		},
+		{
+			"ID": "094",
+			"Name": "Flask or Tankard",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 0.02,
+			"Weight": 1
+		},
+		{
+			"ID": "095",
+			"Name": "Grappling Hook",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 2,
+			"Weight": 4
+		},
+		{
+			"ID": "096",
+			"Name": "Hammer",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 1,
+			"Weight": 3
+		},
+		{
+			"ID": "097",
+			"Name": "Hammer, Sledge",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 2,
+			"Weight": 10
+		},
+		{
+			"ID": "098",
+			"Name": "Healer's Kit",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 5,
+			"Weight": 3
+		},
+		{
+			"ID": "099",
+			"Name": "Amulet",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 5,
+			"Weight": 1
+		},
+		{
+			"ID": "100",
+			"Name": "Emblem",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 5,
+			"Weight": 0
+		},
+		{
+			"ID": "101",
+			"Name": "Reliquary",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 5,
+			"Weight": 2
+		},
+		{
+			"ID": "102",
+			"Name": "Holy Water (Flask)",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 25,
+			"Weight": 1
+		},
+		{
+			"ID": "103",
+			"Name": "Hourglass",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 25,
+			"Weight": 1
+		},
+		{
+			"ID": "104",
+			"Name": "Hunting Trap",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 5,
+			"Weight": 25
+		},
+		{
+			"ID": "105",
+			"Name": "Ink (1 Ounce)",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 10,
+			"Weight": 0
+		},
+		{
+			"ID": "106",
+			"Name": "Ink Pen",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 0.02,
+			"Weight": 0
+		},
+		{
+			"ID": "107",
+			"Name": "Jug or Pitcher",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 0.02,
+			"Weight": 4
+		},
+		{
+			"ID": "108",
+			"Name": "Ladder (10-foot)",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 0.1,
+			"Weight": 25
+		},
+		{
+			"ID": "109",
+			"Name": "Lamp",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 0.5,
+			"Weight": 1
+		},
+		{
+			"ID": "110",
+			"Name": "Lantern, Bullseye",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 10,
+			"Weight": 2
+		},
+		{
+			"ID": "111",
+			"Name": "Lantern, Hooded",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 5,
+			"Weight": 2
+		},
+		{
+			"ID": "112",
+			"Name": "Lock",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 10,
+			"Weight": 1
+		},
+		{
+			"ID": "113",
+			"Name": "Magnifying Glass",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 100,
+			"Weight": 0
+		},
+		{
+			"ID": "114",
+			"Name": "Manacles",
+			"Category": "Adventuring Gear",
+			"Cost_gp": 2,
+			"Weight": 6
+		},
+		{
 			"ID": "115",
 			"Name": "Mess kit",
 			"Category": "Adventuring Gear",
@@ -1173,7 +1173,7 @@
 			"Category": "Adventuring Gear",
 			"Cost_gp": 1,
 			"Weight": 5,
-            "Amount": 10
+			"Amount": 10
 		},
 		{
 			"ID": "143",
@@ -1224,7 +1224,7 @@
 			"Cost_gp": 0.01,
 			"Weight": 1
 		},
-        {
+		{
 			"ID": "150",
 			"Name": "Alchemist's Supplies",
 			"Category": "Tools",
