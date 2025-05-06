@@ -1,0 +1,34 @@
+{
+    "width": 20,
+    "height": 20,
+    "entities": [
+        {
+            "entity_id": 101,
+            "position": {
+                "x": 7,
+                "y": 7
+            }
+        },
+        {
+            "entity_id": 102,
+            "position": {
+                "x": 12,
+                "y": 12
+            }
+        },
+        {
+            "entity_id": 103,
+            "position": {
+                "x": 15,
+                "y": 15
+            }
+        },
+        {
+            "entity_id": 104,
+            "position": {
+                "x": 3,
+                "y": 8
+            }
+        }
+    ]
+}
