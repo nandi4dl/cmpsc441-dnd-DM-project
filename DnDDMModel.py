@@ -1,108 +1,135 @@
+# big ol comment, the server stuff was added pretty late and couldn't spend enough time testing things
+# might work with the right targets and the like, but I had no targets to test, so I can't tell
+
 import json
 import random
-from pathlib import Path
-from ollama import chat
-from util.llm_utils import pretty_stringify_chat, run_console_chat, ollama_seed as seed, tool_tracker
 import sys
+from pathlib import Path
+from ollama import chat  
+from llm_utils import pretty_stringify_chat, ollama_seed as seed, tool_tracker
 
-# Import the various modules (Battlemap, DNDCaCModel, DNDCombat, DNDShopKeep)
+# Import modules
 from BattleMap import Battlemap
-from DNDCaCModel import playerCharCreate, fetch_race_data, fetch_class_level_features, apply_racial_bonuses
+from DNDCaCModel import playerCharCreate, save_character_to_json, fetch_race_data, fetch_race_features, fetch_class_level_features, apply_racial_bonuses
 from DNDCombat import get_monster_data
 from DNDShopKeep import load_items, generate_shop_inventory
+from base import Player, DungeonMaster
 
-# Initialize battlemap
-battlemap = Battlemap(width=20, height=20)
+# Player setup
+# player = Player("Dudley")
+# player.connect()
 
-# Load D&D items from the shop inventory
-items = load_items()
-shop_inventory = generate_shop_inventory(items)
-
-# LLM system variables
+# LLM config
 sign_your_name = 'Gas Lighters'
 model = 'llama3.2'
-llm_temperature = 1.0  # Dynamic temperature variable
-options = {'temperature': llm_temperature, 'max_tokens': 100}
+llm_temperature = 0
+options = {'max_tokens': 100, 'seed': seed(sign_your_name)}  
+
+# LLM system prompt 
 messages = [{
     'role': 'system',
     'content': (
         "You are a Dungeon Master running a D&D 5e campaign. Guide the player through character creation, "
         "combat encounters, inventory management, and storyline progression. Respond to player input, "
         "and dynamically update the battlemap, combat mechanics, and shop inventory. "
-        "Use the tools for relevant tasks, like creating a battlemap, rolling for skill checks, and generating shop inventories."
+        "You have the following tools available for use: \n\n"
+        "1. /create_character - Initiates the character creation process.\n"
+        "2. /shop - Displays the shop inventory for the player.\n"
+        "3. /roll - Allows rolling for skills (e.g., Strength, Dexterity, etc.).\n"
+        "4. /battlemap - Creates a battlemap with player and enemy positions.\n\n"
+        "When appropriate, you can use the tools yourself or ask the Player themselves to do so"
+        "Constantly refer to the Player's(s) character sheet(s) when necessary"
+        "Respond to player input accordingly."
     )
 }]
 
-# Define tools available to the LLM
-tools = [
-    {
-        "type": "function",
-        "function": {
-            "name": "create_battlemap",
-            "description": "Generate a battlemap for combat encounter.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "player_position": {"type": "string"},
-                    "enemy_position": {"type": "string"}
-                }
-            }
-        }
-    },
-    {
-        "type": "function",
-        "function": {
-            "name": "display_shop_inventory",
-            "description": "Generate and display shop inventory for player to browse.",
-            "parameters": {
-                "type": "object",
-                "properties": {}
-            }
-        }
-    },
-    {
-        "type": "function",
-        "function": {
-            "name": "roll_for",
-            "description": "Roll a D20 to determine success or failure of a skill check.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "skill": {"type": "string"},
-                    "dc": {"type": "integer"},
-                    "player": {"type": "string"}
-                }
-            }
-        }
-    }
-]
+# DM setup (commenting out the server-related code)
+# dm = DungeonMaster()
+# dm.start_server()
 
-# Function to initiate character creation using DNDCaCModel
+# === Tool Function Definitions ===
+def tool_tracker(func):
+    """Modified to avoid unnecessary logging of tool calls."""
+    def wrapper(*args, **kwargs):
+        result = func(*args, **kwargs)
+        return result
+    return wrapper
+
+@tool_tracker
+def roll_for(skill, dc, player):
+    global llm_temperature
+    roll = random.randint(1, 20)
+    if roll == 1:
+        llm_temperature = min(llm_temperature + 1.0, 2.0)
+    elif roll == 20:
+        llm_temperature = max(llm_temperature - 1.0, 0.0)
+    result = "Success" if roll >= dc else "Failure"
+    return f"{player} rolled a {roll} for {skill} (DC {dc}): {result} (LLM Temp: {llm_temperature})"
+
+@tool_tracker
+def display_shop_inventory():
+    items = load_items()  
+    inventory = generate_shop_inventory(items)
+    return "\n".join(
+        f"- {item['Name']} (ID: {item['ID']}, Category: {item['Category']}, Cost: {item['Cost_gp']} gp, Weight: {item['Weight']})"
+        for item in inventory
+    )
+
+@tool_tracker
+def create_battlemap(player_position, enemy_position):
+    battlemap = Battlemap(width=20, height=20)
+    return battlemap.generate_map(player_position, enemy_position)
+
+@tool_tracker
 def create_character():
-    name = input("Enter character name: ")
-    age = int(input("Enter age: "))
-    level = int(input("Enter level: "))
-    gender = input("Enter gender: ")
-    description = input("Enter character description: ")
-    background = input("Enter background: ")
-    playerclass = input("Enter class (e.g., wizard, fighter): ").lower()
-    race = input("Enter race (e.g., human, elf): ").lower()
+    print("Welcome to the D&D Character Creator! Type '/exit' to quit at any time.")
+    name = input("Character Name: ")
+    age = input("Age: ")
+    level = int(input("Level: "))
+    gender = input("Gender: ")
+    description = input("Description: ")
+    background = input("Background: ")
+    playerclass = input("Class: ").lower()
+    race = input("Race (e.g. human, elf, dwarf): ").lower()
 
-    # Assign stats using standard array
-    stats = {}
+    print("Assign these values to the 6 stats: 15, 14, 13, 12, 10, 8")
     abilities = ['Strength', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Charisma']
-    available_stats = [15, 14, 13, 12, 10, 8]
+    assigned_stats = {}
+    used_values = []
 
     for ability in abilities:
-        stat_value = int(input(f"Assign value to {ability}: "))
-        stats[ability] = stat_value
-        available_stats.remove(stat_value)
+        while True:
+            try:
+                val = int(input(f"Assign value to {ability}: "))
+                if val in [15, 14, 13, 12, 10, 8] and val not in used_values:
+                    assigned_stats[ability.upper()] = val
+                    used_values.append(val)
+                    break
+                else:
+                    print("Value already used or invalid. Try again.")
+            except ValueError:
+                print("Invalid number. Try again.")
 
-    # Apply racial bonuses (Human gives +1 to all stats)
+    # Fetch race data and apply racial bonuses
     race_data = fetch_race_data(race)
-    stats = apply_racial_bonuses(stats, race_data)
+    if not race_data:
+        print("Invalid race. No bonuses applied.")
+    else:
+        assigned_stats = apply_racial_bonuses(assigned_stats, race_data)
 
-    # Create character
+    # Fetch class features
+    class_level_features = fetch_class_level_features(playerclass, level)
+    if not class_level_features:
+        print(f"Failed to fetch class features for level {level} {playerclass.capitalize()}.")
+    else:
+        print(f"\nClass Features for Level {level} {playerclass.capitalize()}:")
+        for feature in class_level_features.values():
+            print(f"- {feature['name']}")
+
+    # Fetch race features
+    race_features = fetch_race_features(race)
+
+    # Create the character
     character = playerCharCreate(
         name=name,
         age=age,
@@ -111,137 +138,174 @@ def create_character():
         description=description,
         background=background,
         playerclass=playerclass,
-        race=race,
-        stats=stats,
-        class_features=[],
-        race_features=[]
+        class_features=class_level_features
     )
 
-    print(f"Character created: {character.name}, {character.race}, {character.playerclass}")
+    print("\n--- Final Character Sheet ---")
+    print(character)
+    print("\nStats with Racial Bonuses:")
+    for stat, val in assigned_stats.items():
+        print(f"{stat}: {val}")
+    
+    # Save the character immediately after creation
+    save_character_to_json({
+        "name": character.name,
+        "age": character.age,
+        "level": character.level,
+        "gender": character.gender,
+        "description": character.description,
+        "background": character.background,
+        "class": character.classs,
+        "class_features": character.class_features,
+        "stats": assigned_stats,
+        "race_traits": race_features.get('traits', [])
+    })
 
-    # Save character to JSON file
-    character_data = {
-        'name': character.name,
-        'age': character.age,
-        'level': character.level,
-        'gender': character.gender,
-        'description': character.description,
-        'background': character.background,
-        'playerclass': character.playerclass,
-        'race': character.race,
-        'stats': character.stats,
-        'class_features': character.class_features,
-        'race_features': character.race_features
+    return f"Character created and saved: {character.name}"
+
+def seed(name):
+    return sum(ord(c) for c in name) % 100
+
+def load_character_from_json(character_name):
+    try:
+        filename = f"{character_name.lower().replace(' ', '_')}.json"
+        with open(filename, 'r') as file:
+            character_data = json.load(file)
+        print(f"Character {character_name} loaded successfully.")
+        return character_data
+    except FileNotFoundError:
+        print(f"Character file {filename} not found.")
+        return None
+    except Exception as e:
+        print(f"Error loading character data: {e}")
+        return None
+
+# === Run Console Chat ===
+
+def safe_input(prompt):
+    user_input = input(prompt)
+    if user_input.strip().lower() == '/exit':
+        print("Exiting game.")
+        sys.exit()
+
+    # Process tool calls
+    if user_input.strip().lower() == '/create_character':
+        print("Starting character creation process...")
+        character = create_character()
+        return f"Character created: {character}"
+
+    elif user_input.strip().lower() == '/battlemap':
+        print("Triggering create_battlemap tool...")
+        player_position = input("Enter player position (x,y): ")
+        enemy_position = input("Enter enemy position (x,y): ")
+        battlemap = create_battlemap(player_position, enemy_position)
+        return battlemap
+
+    elif user_input.strip().lower() == '/shop':
+        print("Displaying shop inventory...")
+        inventory = display_shop_inventory()
+        return inventory
+
+    elif user_input.strip().lower() == '/roll':
+        print("Triggering roll_for tool...")
+        skill = input("Enter skill (e.g., Strength, Dexterity): ")
+        dc = int(input("Enter DC value: "))
+        player = input("Enter player name: ")
+        result = roll_for(skill, dc, player)
+        return result
+
+    return user_input
+
+def run_console_chat(chat_payload):
+    """Send the conversation to the model and handle the response."""
+    response = chat(
+        model=chat_payload['model'],
+        messages=chat_payload['messages']
+    )
+    return process_llm_response(response)
+
+# === Process LLM Response ===
+
+def process_llm_response(response):
+    try:
+        content = response['message']['content'].strip().lower()
+
+        return content 
+
+    except Exception as e:
+        print(f"Error processing LLM response: {e}")
+        return "There was an error processing your request."
+
+# === Load character and attempts from .json and attempts.txt ===
+
+def load_character(character_name):
+    try:
+        filename = f"{character_name.replace(' ', '_').lower()}.json"
+        with open(filename, 'r') as file:
+            character_data = json.load(file)
+        return character_data
+    except FileNotFoundError:
+        print(f"Character file for {character_name} not found.")
+        return None
+
+def load_attempts_log():
+    try:
+        with open('./attempts.txt', 'r') as f:
+            attempts = f.read().splitlines()
+        return "\n".join(attempts[-5:])
+    except FileNotFoundError:
+        print("Attempts log not found.")
+        return ""
+
+    
+# === Main Game Loop ===
+
+print("Welcome to the DM Simulator! Type '/exit' to quit at any time.")
+print("Available Commands (use when appropriate):")
+print("/create_character - Start the character creation process.")
+print("/battlemap - Create a battlemap with player and enemy positions.")
+print("/shop - View the shop inventory and buy items.")
+print("/roll - Roll for a skill check or attack roll.")
+print("/load_character [character_name] - Load an existing character from a JSON file.")
+print("/load_chat_history - View past chat interactions.")
+print("/exit - Exit the game.")
+
+while True:
+    user_input = safe_input("You: ")
+
+    if user_input.lower().startswith('/load_character'):
+        character_name = user_input.split(" ", 1)[1].strip()
+        character_data = load_character(character_name)
+        if character_data:
+            print(f"Loaded character data: {character_data}")
+        continue
+
+    if user_input.strip().lower() == '/load_chat_history':
+        attempts_log = load_attempts_log()
+        print(f"Attempts Log:\n{attempts_log}")
+        continue
+
+    # Prepare chat payload with messages
+    messages.append({'role': 'user', 'content': user_input})
+
+    # Prepare chat payload with messages
+    chat_payload = {
+        "model": model,
+        "messages": messages
     }
 
-    # Save to a JSON file
-    save_path = Path(f"{character.name}_character.json")
-    with open(save_path, 'w') as json_file:
-        json.dump(character_data, json_file, indent=4)
+    # Call LLM and get a response
+    response = run_console_chat(chat_payload)
 
-    print(f"Character saved to {save_path}")
-    return character
+    if 'message' in response:
+        print(f"\nDM: {response['message']['content']}\n")
+        messages.append({'role': 'assistant', 'content': response['message']['content']})
 
-def process_function_call(function_call):
-    name = function_call.name
-    args = function_call.arguments
-    return globals()[name](**args)
+    chat_log_path = Path('./attempts.txt')
 
-@tool_tracker
-def roll_for(skill, dc, player):
-    global llm_temperature
-    roll = random.randint(1, 20)
-
-    # Adjust temperature based on criticals
-    if roll == 1:
-        llm_temperature = min(llm_temperature + 1.0, 2.0)
-        print("Critical failure! Increasing LLM temperature.")
-    elif roll == 20:
-        llm_temperature = max(llm_temperature - 1.0, 0.0)
-        print("Critical success! Decreasing LLM temperature.")
-
-    result = "Success" if roll >= dc else "Failure"
-    return f"{player} rolled a {roll} for {skill} (DC {dc}): {result} (LLM Temp: {llm_temperature})"
-
-@tool_tracker
-def display_shop_inventory():
-    return generate_shop_inventory(items)
-
-@tool_tracker
-def create_battlemap(player_position, enemy_position):
-    return battlemap.generate_map(player_position, enemy_position)
-
-@tool_tracker
-def combat_encounter(character, monster_name):
-    monster_data = get_monster_data(monster_name)
-    if not monster_data:
-        print(f"Could not find monster data for {monster_name}")
-        return
-
-    print(f"Combat starts! {character.name} faces a {monster_name}")
-
-    while character.hit_points > 0 and monster_data['hit_points'] > 0:
-        action = input("What action do you want to take? (e.g., Attack, Defend, Cast spell): ")
-
-        if action.lower() == 'attack':
-            damage = random.randint(1, 10)
-            monster_data['hit_points'] -= damage
-            print(f"You dealt {damage} damage to {monster_name}. Monster HP: {monster_data['hit_points']}")
-
-            roll_chat = {
-                'model': model,
-                'temperature': llm_temperature,
-                'messages': [{
-                    "role": "system",
-                    "content": f"{character.name} attacks the {monster_name}. Determine if they hit using a D20 roll."
-                }],
-                'tools': tools
-            }
-
-            response = run_console_chat(roll_chat)
-
-            if response.message.tool_calls and response.message.tool_calls[0].function.name == "roll_for":
-                result = process_function_call(response.message.tool_calls[0].function)
-                print(result)
-        else:
-            print(f"{action} is not a valid action in combat.")
-            break
-
-        # Monster's attack
-        monster_attack = random.randint(1, 10)
-        character.hit_points -= monster_attack
-        print(f"The {monster_name} attacks and deals {monster_attack} damage. Your HP: {character.hit_points}")
-
-    if character.hit_points <= 0:
-        print(f"{character.name} has been defeated!")
-    else:
-        print(f"You defeated the {monster_name}!")
-
-def start_campaign():
-    print("Welcome to the D&D Campaign! Let's create your character.")
-    character = create_character()
-
-    while True:
-        print("What would you like to do?")
-        action = input("Options: [1] Explore, [2] Combat, [3] Visit Shop, [4] Exit Campaign: ")
-
-        if action == '1':
-            print("You are exploring the world!")
-        elif action == '2':
-            print("Enter combat mode!")
-            monster_name = input("Enter the name of the monster to fight: ")
-            combat_encounter(character, monster_name)
-        elif action == '3':
-            print("Visiting the shop!")
-            inventory = display_shop_inventory()
-            print("The following items are available for purchase:")
-            for item in inventory:
-                print(f"{item['Name']} (ID: {item['ID']}) - {item['Cost_gp']} gold")
-        elif action == '4':
-            print("Exiting the campaign.")
-            break
-        else:
-            print("Invalid option. Please choose again.")
-
-# Start the campaign
-start_campaign()
+    # Save the chat log after every interaction
+    with open(chat_log_path, 'a') as f:
+        f.write('-------------------------NEW ATTEMPT-------------------------\n\n\n')
+        f.write(f'Model: {model}\nOptions: {options}\n')
+        f.write(pretty_stringify_chat(messages))
+        f.write('\n\n\n------------------------END OF ATTEMPT------------------------\n\n\n')

@@ -77,3 +77,31 @@ class Battlemap:
             print(f"Loaded battlemap with {len(self.entities)} entities.")
         except json.JSONDecodeError as e:
             print(f"Error reading the JSON file: {e}")
+
+    def generate_map(self, player_position, enemy_position):
+        try:
+            px, py = map(int, player_position.split(','))
+            ex, ey = map(int, enemy_position.split(','))
+
+            self.add_entity("Player", px, py)
+            self.add_entity("Enemy", ex, ey)
+
+            return self.render_map()
+        except Exception as e:
+            return f"Error generating map: {e}"
+
+    def render_map(self):
+        rendered = ""
+        for y in range(self.height):
+            for x in range(self.width):
+                cell = self.grid[y][x]
+                if cell is None:
+                    rendered += ". "
+                elif cell == "Player":
+                    rendered += "P "
+                elif cell == "Enemy":
+                    rendered += "E "
+                else:
+                    rendered += "? "
+            rendered += "\n"
+        return rendered

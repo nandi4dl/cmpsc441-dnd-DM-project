@@ -1,0 +1,180 @@
+import socket
+import threading
+import time
+
+class DungeonMasterServer:
+    def __init__(self, game_log, dm_hook=lambda : '', host="127.0.0.1", port=5555, countdown=10):
+        self.host = host
+        self.port = port
+        self.countdown = countdown
+        self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        self.server_socket.bind((self.host, self.port))
+        self.server_socket.listen(5)
+
+        # Track connected clients in a dict: {client_socket: addr}
+        self.clients = {}
+        self.game_started = False
+        self.running = True
+
+        # Concurrency helpers for turn-based logic
+        self.turn_number = 1
+
+        self.dm_hook = dm_hook
+        self.update_log = lambda msg: game_log.append(msg + '\n')
+
+    def start_server(self):
+        print(f"[LOG] Listening on {self.host}:{self.port}")
+
+        # Start the server to accept clients
+        threading.Thread(target=self.accept_clients, daemon=True).start()
+
+        # Start the countdown in the main thread
+        self.start_countdown()
+
+        # Once countdown finishes, start the game loop
+        game_thread = threading.Thread(target=self.game_loop, daemon=True)
+        game_thread.start()
+        game_thread.join()
+
+    def accept_clients(self):
+        while True:
+            client_sock, addr = self.server_socket.accept()
+            name = client_sock.recv(1024).decode()
+            self.clients[client_sock] = addr, name
+            self.broadcast(f"[LOG] New connection from {addr}. Welcome {name}!".encode())
+
+            if self.game_started:
+                client_sock.sendall(b"[LOG] You are ready to join the game!\n")
+            else:
+                client_sock.sendall(b"[LOG] You joined before the countdown ended!\n")
+
+            # Each connected client is handled in its own thread
+            threading.Thread(target=self.handle_client, args=(client_sock,), daemon=True).start()
+
+    def handle_client(self, client_sock):
+        while True:
+            try:
+                data = client_sock.recv(1024)
+                if not data:
+                    continue
+                msg = data.decode().strip()
+
+                if msg.lower() == "/quit":
+                    self.remove_client(client_sock, reason="Player quit.")
+                else:
+                    # The player is submitting their turn action
+                    self.broadcast_action(client_sock, msg)
+            except ConnectionResetError:
+                self.remove_client(client_sock, reason="Connection reset.")
+                break
+
+    def remove_client(self, client_sock, reason=""):
+        if client_sock in self.clients:
+            addr, name = self.clients[client_sock]
+            print(f"[LOG] Removing client {addr}: {reason}")
+            del self.clients[client_sock]  # Correcting: delete from clients dict
+        client_sock.close()
+
+    def start_countdown(self):
+        for i in range(self.countdown, 0, -1):
+            msg = f"[LOG] Countdown: {i} seconds left...\n".encode()
+            self.broadcast(msg)
+            time.sleep(1)
+        print("[LOG] Countdown ended.")
+        self.game_started = True
+        self.broadcast(b"Game has started!\n")
+
+    def game_loop(self):
+        print("[LOG] Game loop started! Each player must respond every turn.")
+        while self.running:
+            if not self.clients:
+                print("[LOG] No players left. Stopping game.")
+                self.running = False
+                break
+
+            # Broadcast that a new turn has started
+            turn_msg = f"\n[LOG] --- TURN {self.turn_number} STARTED ---\n".encode()
+            self.broadcast(turn_msg)
+            self.broadcast('[LOG] DM is making decisions...\n'.encode())
+
+            dm_message = self.dm_hook()
+            self.broadcast(f'[DM] {dm_message}'.encode())
+
+            self.broadcast(b"\n\nPlease enter your action (or '/quit' to leave)\n")
+
+            # Wait for all players to respond
+            client_threads = []
+            for client_sock, _ in self.clients.items():
+                thread = threading.Thread(target=self.handle_client, args=(client_sock,), daemon=True)
+                thread.start()
+                client_threads.append(thread)
+
+            for thread in client_threads:
+                thread.join()
+
+            # Announce that the turn is complete
+            self.broadcast(f"--- TURN {self.turn_number} COMPLETE ---\n".encode())
+            self.turn_number += 1
+            time.sleep(1)  # Just a short pause before next turn
+
+        self.server_socket.close()
+        print("[LOG] Game loop ended. Server closed.")
+
+    def broadcast_action(self, client_sock, msg):
+        """Record the player's action, broadcast it, and signal that they've responded."""
+        if client_sock not in self.clients:
+            return
+        addr, name = self.clients[client_sock]
+
+        out_msg = f"[{name}] -> {msg}\n".encode()
+        self.broadcast(out_msg)
+
+    def broadcast(self, message: bytes):
+        """Send a message to all connected players."""
+        print(f"[LOG] Broadcasting: {message.decode().strip()}")
+        self.update_log(message.decode().strip())
+        for client_sock in list(self.clients.keys()):
+            try:
+                client_sock.sendall(message)
+            except OSError:
+                self.remove_client(client_sock, reason="Send failed.")
+
+import socket
+import threading
+
+class PlayerClient:
+    def __init__(self, name, host="127.0.0.1", port=5555):
+        self.host = host
+        self.port = port
+        self._name = name
+        self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+    @property
+    def name(self):
+        return self._name
+
+    def connect(self):
+        self.sock.connect((self.host, self.port))
+        self.sock.sendall(f'{self.name}'.encode())
+        threading.Thread(target=self.receive_messages, daemon=True).start()
+
+    def receive_messages(self):
+        while True:
+            try:
+                data = self.sock.recv(1024)
+                if not data:
+                    break
+                print(data.decode().strip())
+            except ConnectionResetError:
+                print(f"[LOG] Connection closed by server.")
+                break
+
+    def send_message(self, msg: str):
+        """Send a message to the DM (e.g. the player's action)."""
+        self.sock.sendall(msg.encode())
+
+    def unjoin(self):
+        """Send '/quit' to gracefully exit."""
+        self.send_message("/quit")
+        self.sock.close()
